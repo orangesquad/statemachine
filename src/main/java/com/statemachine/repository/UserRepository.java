@@ -7,5 +7,4 @@ import com.statemachine.entity.Customers;
 
 @Repository
 public interface UserRepository extends JpaRepository<Customers,Long>{
-	Customers findByMobileAndPassword(String mobile, String password);	
 }
