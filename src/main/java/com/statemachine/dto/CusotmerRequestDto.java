@@ -11,4 +11,5 @@ public class CusotmerRequestDto {
 	private String eventName;
 	private LocalDate eventDate;
 	private String eventType;
+	private String eventvalue;
 }

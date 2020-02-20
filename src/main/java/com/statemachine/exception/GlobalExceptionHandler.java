@@ -10,18 +10,18 @@ import com.statemachine.dto.ResponseDto;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<ResponseDto> noUserDataAvaliableException() {
-		ResponseDto responseDto = new ResponseDto();
-		responseDto.setMessage(StateMachineConstant.INVALID_LOGIN);
-		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
-	}
 	@ExceptionHandler(CusotmerNotFoundException.class)
 	public ResponseEntity<ResponseDto> cusotmerNotFoundException() {
 		ResponseDto responseDto = new ResponseDto();
-		responseDto.setMessage(StateMachineConstant.NOTFOUND_CODE);
-		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
+		responseDto.setMessage(StateMachineConstant.NOT_FOUND_CODE);
+		responseDto.setStatusCode(StateMachineConstant.ORN_001);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+	}
+	@ExceptionHandler(AccountNotActiveException.class)
+	public ResponseEntity<ResponseDto> accountNotActiveException() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(StateMachineConstant.NOT_ACTIVE);
+		responseDto.setStatusCode(StateMachineConstant.ORN_002);
 		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
 	}
 }
