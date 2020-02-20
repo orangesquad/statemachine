@@ -24,4 +24,7 @@ public class Events {
 	private String eventName;
 	private LocalDate eventDate;
 	private Long customerId;
+	private String eventType;
+	private Long customersId;
+
 }

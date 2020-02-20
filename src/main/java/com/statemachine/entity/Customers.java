@@ -25,4 +25,5 @@ public class Customers {
 	private Long accountNumber;
 	private String accountType;
 	private String address;
+	private String state;
 }
