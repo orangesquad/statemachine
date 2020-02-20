@@ -2,16 +2,18 @@ package com.statemachine.service;
 
 import com.statemachine.dto.CusotmerRequestDto;
 import com.statemachine.dto.CusotmersResponseDto;
+
 import com.statemachine.dto.CustomerCreateRequestDto;
 import com.statemachine.exception.AccountNumberNotFoundException;
+import com.statemachine.exception.AddressNotFoundException;
+import com.statemachine.exception.AccountNotActiveException;
+
 import com.statemachine.exception.CusotmerNotFoundException;
 import com.statemachine.exception.CustomerEmailNotFoundException;
 import com.statemachine.exception.CustomerMobileNumberNotFoundException;
 import com.statemachine.exception.CustomerNameNotFoundException;
 
 public interface CustomersService {
-
-	CusotmersResponseDto addressChange(CusotmerRequestDto cusotmerRequestDto) throws CusotmerNotFoundException;
-	CusotmersResponseDto createAccount(CustomerCreateRequestDto customerCreateRequestDto) throws AccountNumberNotFoundException, CustomerMobileNumberNotFoundException, CustomerEmailNotFoundException, CustomerNameNotFoundException;
-	
+	CusotmersResponseDto createAccount(CustomerCreateRequestDto customerCreateRequestDto) throws AccountNumberNotFoundException, CustomerMobileNumberNotFoundException, CustomerEmailNotFoundException, CustomerNameNotFoundException, AddressNotFoundException;
+	CusotmersResponseDto customerChangeRequest(CusotmerRequestDto cusotmerRequestDto) throws CusotmerNotFoundException, AccountNotActiveException;
 }
