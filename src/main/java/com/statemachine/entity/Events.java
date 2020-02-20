@@ -1,5 +1,7 @@
 package com.statemachine.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Events {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long eventsId;
 	private String eventName;
-	private Long eventDate;
-	private Long customerId;
+	private LocalDate eventDate;
+	private String eventType;
+	private Long customersId;
 }

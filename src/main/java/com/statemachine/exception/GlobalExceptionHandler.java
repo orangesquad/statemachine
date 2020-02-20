@@ -17,4 +17,11 @@ public class GlobalExceptionHandler {
 		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
 	}
+	@ExceptionHandler(CusotmerNotFoundException.class)
+	public ResponseEntity<ResponseDto> cusotmerNotFoundException() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(StateMachineConstant.NOTFOUND_CODE);
+		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+	}
 }
