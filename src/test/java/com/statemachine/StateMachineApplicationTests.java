@@ -1,4 +1,4 @@
-package com.test;
+package com.statemachine;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

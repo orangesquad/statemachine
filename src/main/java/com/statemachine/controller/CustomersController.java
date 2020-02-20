@@ -2,6 +2,7 @@ package com.statemachine.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,13 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.statemachine.constant.StateMachineConstant;
 import com.statemachine.dto.CusotmerRequestDto;
 import com.statemachine.dto.CusotmersResponseDto;
+import com.statemachine.dto.CustomerCreateRequestDto;
+import com.statemachine.exception.AccountNumberNotFoundException;
 import com.statemachine.exception.CusotmerNotFoundException;
+import com.statemachine.exception.CustomerEmailNotFoundException;
+import com.statemachine.exception.CustomerMobileNumberNotFoundException;
+import com.statemachine.exception.CustomerNameNotFoundException;
 import com.statemachine.service.CustomersService;
 
 /**
- * This controller used to perform the some events like address change and mobile no change
+ * This controller used to perform the some events like address change and
+ * mobile no change
  * 
- * @author Rajesh 
+ * @author Rajesh
  * @version 1.0
  * @since 17-02-2020
  */
@@ -29,20 +36,34 @@ public class CustomersController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomersController.class);
 
-	CustomersService  customersService;
+	@Autowired
+	CustomersService customersService;
+
 	/**
 	 * This method is used to change the address
 	 * 
 	 * @param cusotmerRequestDto
 	 * @return cusotmersResponseDto
-	 * @throws CusotmerNotFoundException 
+	 * @throws CusotmerNotFoundException
 	 */
 	@PostMapping("/addresschange")
-	public ResponseEntity<CusotmersResponseDto> addressChange(@RequestBody CusotmerRequestDto cusotmerRequestDto) throws CusotmerNotFoundException {
+	public ResponseEntity<CusotmersResponseDto> addressChange(@RequestBody CusotmerRequestDto cusotmerRequestDto)
+			throws CusotmerNotFoundException {
 		LOGGER.info(StateMachineConstant.INSIDE_METHOD);
 		CusotmersResponseDto cusotmersResponseDto = customersService.addressChange(cusotmerRequestDto);
 		cusotmersResponseDto.setMessage(StateMachineConstant.SUCCESS);
 		cusotmersResponseDto.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<>(cusotmersResponseDto, HttpStatus.OK);
 	}
+
+	@PostMapping("/createAccount")
+	public ResponseEntity<CusotmersResponseDto> createAccount(
+			@RequestBody CustomerCreateRequestDto customerCreateRequestDto) throws AccountNumberNotFoundException,
+			CustomerMobileNumberNotFoundException, CustomerEmailNotFoundException, CustomerNameNotFoundException {
+		CusotmersResponseDto cusotmersResponseDto = customersService.createAccount(customerCreateRequestDto);
+		cusotmersResponseDto.setMessage("Success");
+		cusotmersResponseDto.setStatusCode(200);
+		return new ResponseEntity<>(cusotmersResponseDto, HttpStatus.OK);
+	}
+
 }

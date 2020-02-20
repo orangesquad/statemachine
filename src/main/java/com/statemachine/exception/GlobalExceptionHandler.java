@@ -17,11 +17,36 @@ public class GlobalExceptionHandler {
 		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
 	}
+
 	@ExceptionHandler(CusotmerNotFoundException.class)
 	public ResponseEntity<ResponseDto> cusotmerNotFoundException() {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setMessage(StateMachineConstant.NOTFOUND_CODE);
 		responseDto.setStatusCode(StateMachineConstant.NOTFOUND_CODE);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+	}
+
+	@ExceptionHandler(CustomerEmailNotFoundException.class)
+	public ResponseEntity<ResponseDto> customerEmailNotFoundException() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(StateMachineConstant.EMAIL);
+		responseDto.setStatusCode(StateMachineConstant.BAD_REQ);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+	}
+
+	@ExceptionHandler(CustomerMobileNumberNotFoundException.class)
+	public ResponseEntity<ResponseDto> customerMobileNumberNotFoundException() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(StateMachineConstant.MOBILE);
+		responseDto.setStatusCode(StateMachineConstant.BAD_REQ);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+	}
+
+	@ExceptionHandler(CustomerNameNotFoundException.class)
+	public ResponseEntity<ResponseDto> customerNameNotFoundException() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(StateMachineConstant.NAME);
+		responseDto.setStatusCode(StateMachineConstant.BAD_REQ);
 		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
 	}
 }
