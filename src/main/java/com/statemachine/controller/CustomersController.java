@@ -25,20 +25,6 @@ import com.statemachine.exception.UserNotFoundException;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 public class CustomersController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CustomersController.class);
-
-	/**
-	 * This method is used to validating the user by providing the input as LoginDto
-	 * 
-	 * @param loginDto
-	 * @return responseDTO
-	 * @throws UserNotFoundException 
-	 */
-	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDto> usersLogin(@RequestBody LoginDto loginDto) throws UserNotFoundException{
-		LOGGER.info("Inside UserController :: userLogin.");
-		LoginResponseDto loginResponseDto = new LoginResponseDto();
-		return new ResponseEntity<>(loginResponseDto, HttpStatus.OK);
-	}
+	
 
 }
